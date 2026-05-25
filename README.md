@@ -1,33 +1,47 @@
-# MusicOrgjaa
-Organize large collection of music and strip junk files and empty folders.
-# Backing Track Folder Analyzer ���
+# MusicOrg
 
-A collection of Python tools for scanning, cleaning, and organizing a local music archive. 
-## 📄 License
-This project is public and open. No license or restrictions—use it, remix it, enjoy it. 🎧
+Python utilities for scanning, cleaning, and organizing a local music archive.
 
-## 📦 Included Scripts – Version 1.1.0
+## Scripts
 
+### mboxcnt.py
+Scans a music folder tree and prints a summary: subfolder count, total file count, empty folders, and a full breakdown of file extensions.
 
-- **`mboxcnt.py`** — Analyzes the folder structure and contents of a music archive:
-  - Counts subfolders and total files
-  - Flags empty folders
-  - Breaks down file types by extension
-  - Outputs human-readable summary
-  - 🔹 Default path: `C:\Users\Public\Music`
+```
+py mboxcnt.py                        # scans C:\Users\Public\Music (default)
+py mboxcnt.py <root_folder>
+```
 
-- **`drystrip.py`** — Performs a "dry run" preview of removable non-audio files:
-  - No deletion—just reports what would be purged
-  - Targets `.jpg`, `.ini`, and `.db` files
-  - 🔹 Default path: `C:\Users\Public\Music`
+### drystrip.py
+Dry-run preview — reports `.jpg`, `.ini`, and `.db` junk files and empty folders that *would* be removed, without touching anything.
 
-- **`strip.py`** *(coming soon)* — Removes clutter files from the archive with a live cleanup
+```
+py drystrip.py                       # scans C:\Users\Public\Music (default)
+py drystrip.py <root_folder>
+```
 
-## 🧪 Usage
+### strip.py
+Live cleanup — deletes `.jpg`, `.ini`, and `.db` junk files, then removes any empty folders left behind.
 
-```bash
-# Run with default path
-python mboxcnt.py
+> **Warning:** deletions are permanent (`os.remove`) — files are not sent to the Recycle Bin. Run `drystrip.py` first to preview.
 
-# Run with a custom path
-python mboxcnt.py "D:\MUSICbox\BACKINGTRACKS"
+```
+py strip.py                          # targets C:\Users\Public\Music (default)
+py strip.py <root_folder>
+```
+
+### findflac.py
+Recursively searches a folder tree for `.flac` files and prints their full paths.
+
+```
+py findflac.py                       # scans D:\MUSICbox (default)
+py findflac.py <root_folder>
+```
+
+## Requirements
+
+Python 3.x, stdlib only (`os`, `sys`, `collections`)
+
+## License
+
+MIT — Copyright Drew Adkins | Unsung Images

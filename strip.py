@@ -1,3 +1,16 @@
+"""
+strip.py
+Live cleanup: delete .jpg, .ini, and .db junk files from a music folder tree,
+then remove any empty folders left behind.
+
+Note: deletions are permanent (os.remove) — not sent to Recycle Bin.
+Intended behavior for bulk strip operations.
+
+Usage:
+    py strip.py                    # targets C:\Users\Public\Music (default)
+    py strip.py <root_folder>      # targets specified folder
+"""
+
 import os
 import sys
 
